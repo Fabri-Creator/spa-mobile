@@ -1,16 +1,25 @@
+// import { useEffect } from "react";
+
 import { Link } from "react-router-dom";
+
 import Header from "../components/Header";
 
 function Product({ items, handleItems }) {
-  let moviles = items.slice(0, 10);
 
+// console.log('cambios', items)  
+
+  // useEffect(() => {
+  //   moviles = items.slice(0, 10);
+  //   return moviles
+  // }, [items]);
+ 
   return (
     <div className="vista-container">
       <Header handleItems= {handleItems}></Header>
       <Link to="/Detail">Detail page</Link>
 
-      {moviles &&
-        moviles.map((item) => {
+      {items &&
+        items.map((item) => {
           return (
             <>
               <h3 className="data">{item.id}</h3>
