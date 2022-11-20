@@ -1,7 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
 #root{
   position: absolute;
-  height: 90vh;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   top: 0px;
   left: 0px;
   margin: 0px;
@@ -17,47 +21,3 @@
   height: auto;
   color: white;
 }
-
-/* select {
-  background: none;
-  border: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  outline: none;
-  box-shadow: none;
-}
-a {
-  text-decoration: none;
-  color: white;
-}
-button {
-  border: none;
-  text-decoration: none;
-  font-size: 1rem;
-  color: white;
-  cursor: pointer;
-  text-align: center;
-}
-button:active {
-  border-style: none;
-  outline: none;
-}
-button:focus {
-  border-style: none;
-  outline: none;
-}
-input {
-  display: inline-block;
-  border: none;
-  padding: 0.5rem 0.5rem;
-  margin: 0;
-  text-decoration: none;
-  color: black;
-  font-size: 1rem;
-  cursor: pointer;
-}
-input:focus {
-  outline: none;
-} */

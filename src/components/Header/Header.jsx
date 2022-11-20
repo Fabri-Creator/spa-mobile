@@ -1,38 +1,39 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
+import getMovile from "../../assets/getMovile";
+
 import "./Header.css";
 
 function Header({ handleItems }) {
   const [pages, setPages] = useState("");
-  const { pathname } = useLocation();
+  const [movile, setMovile] = useState(getMovile());
+  let location  = useLocation();
 
   useEffect(() => {
-    let pages = [];
-    pathname === "/" && pages.push("Products");
-    pathname === "/Detail" && pages.push("Products", "Detail");
-    console.log(pages);
-    return setPages(pages);
-  }, [pathname]);
+    let crumbs = [];
+    location.pathname === '/' && crumbs.push('/')
+    location.pathname !== '/' && crumbs.push('/', movile.id)
+    return setPages(crumbs);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { value } = e.target;
     handleItems(value);
   };
-
+  
   return (
     <div className="header-container">
-
       <div className="breadCrumb-container">
         {pages &&
           pages.map((page) => {
             return (
               <NavLink
-                to={page === "Products" ? "/" : "/Detail"}
+                to={page === "/" ? "/" : `/${movile.id}`}
                 className="nav-style"
               >
-                {`/ ${page} `}
+                {page === "/" ? "/Moviles" : `/${movile.model}`}
               </NavLink>
             );
           })}
@@ -55,7 +56,6 @@ function Header({ handleItems }) {
           </button>
         </form>
       </div>
-
     </div>
   );
 }

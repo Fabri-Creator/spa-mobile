@@ -3,11 +3,12 @@ import { Routes, Route } from "react-router-dom";
 
 import Product from "./vistas/Product";
 import Detail from "./vistas/Detail";
-// import useFetch from "./assets/useFetch";
+import useFetch from "./assets/useFetch";
 
+import filterItems from "./assets/filterItems";
 import getStorage from "./assets/getStorage";
-import getMovile from './assets/getMovile'
-import filterItems  from './assets/filterItems'
+import getMovile from "./assets/getMovile";
+import fetchSingleProduct from "./assets/fetchSingleProduct";
 
 import "./App.css";
 
@@ -17,11 +18,13 @@ function App() {
   const [movile, setMovile] = useState(getMovile());
 
   useEffect(() => {
+    const url = `https://front-test-api.herokuapp.com/api/product`
+    useFetch(url)
     setItems(getStorage());
   }, []);
 
   const handleFilter = (filtrado) => {
-    let filteredItems = filterItems(filtrado, localItems)
+    let filteredItems = filterItems(filtrado, localItems);
     return setItems(filteredItems);
   };
 
@@ -29,9 +32,19 @@ function App() {
     !filtrado && setItems(localItems);
 
     if (filtrado) {
-      handelFilter(filtrado);
+      return handleFilter(filtrado);
     }
+  };
 
+  const handleSingleProduct = (movileId) => {
+    const url = `https://front-test-api.herokuapp.com/api/product/${movileId}`
+    fetchSingleProduct(url)
+    setMovile(getMovile());
+  };
+
+  const handleLimit = (elements) => {
+    let limitedUnits = elements.slice(0, 8);
+    return limitedUnits;
   };
 
   return (
@@ -39,9 +52,12 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Product items={items} handleItems={handleItems} />}
+          element={<Product items={handleLimit(items)} handleItems={handleItems} handleSingleProduct={handleSingleProduct}/>}
         />
-        <Route path="/ZmGrkLRPXOTpxsU4jjAcv" element={<Detail item={movile}/>} />
+        <Route
+          path={`/${movile.id}`}
+          element={<Detail item={movile} />}
+        />
       </Routes>
     </div>
   );
