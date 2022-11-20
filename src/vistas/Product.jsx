@@ -1,18 +1,19 @@
-// import { useEffect } from "react";
-
 import { useNavigate } from "react-router-dom";
 
 import Header from "../components/Header";
 
+import defaultUrl from "../assets/variables";
+import fetchSingleProduct from "../assets/fetchSingleProduct";
+
 import "./vistas.css";
 
-function Product({ items, handleItems, handleSingleProduct }) {
+function Product({ items, handleItems }) {
   const navigate = useNavigate();
 
   const handleProductDetail = (movileId) => {
-    const url = `https://front-test-api.herokuapp.com/api/product/${movileId}`;
-    handleSingleProduct(movileId);
-    navigate(`/${movileId}`);
+    const url = `${defaultUrl}/${movileId}`
+    fetchSingleProduct(url).then(navigate(`/${movileId}`))
+    setMovile(getMovile());
   };
 
   return (

@@ -8,38 +8,35 @@ import useFetch from "./assets/useFetch";
 import filterItems from "./assets/filterItems";
 import getStorage from "./assets/getStorage";
 import getMovile from "./assets/getMovile";
-import fetchSingleProduct from "./assets/fetchSingleProduct";
+import defaultUrl from "./assets/variables";
 
 import "./App.css";
-
+ 
 function App() {
+
+
   const [items, setItems] = useState("");
   const [localItems, setlocalItems] = useState(getStorage());
   const [movile, setMovile] = useState(getMovile());
 
+  console.log(defaultUrl)
+
   useEffect(() => {
-    const url = `https://front-test-api.herokuapp.com/api/product`
-    useFetch(url)
+    useFetch(defaultUrl)
     setItems(getStorage());
   }, []);
 
-  const handleFilter = (filtrado) => {
-    let filteredItems = filterItems(filtrado, localItems);
+  const handleFilter = (filterValue) => {
+    let filteredItems = filterItems(filterValue, localItems);
     return setItems(filteredItems);
   };
 
-  const handleItems = (filtrado) => {
-    !filtrado && setItems(localItems);
+  const handleItems = (filter) => {
+    !filter && setItems(localItems);
 
-    if (filtrado) {
-      return handleFilter(filtrado);
+    if (filter) {
+      return handleFilter(filter);
     }
-  };
-
-  const handleSingleProduct = (movileId) => {
-    const url = `https://front-test-api.herokuapp.com/api/product/${movileId}`
-    fetchSingleProduct(url)
-    setMovile(getMovile());
   };
 
   const handleLimit = (elements) => {
@@ -52,7 +49,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Product items={handleLimit(items)} handleItems={handleItems} handleSingleProduct={handleSingleProduct}/>}
+          element={<Product items={handleLimit(items)} handleItems={handleItems}/>}
         />
         <Route
           path={`/${movile.id}`}
