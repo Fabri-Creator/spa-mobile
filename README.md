@@ -18,11 +18,9 @@
 
 ##### Run project
 
-`npm start`
+`npm run dev`
 
 ###### For building, run `npm run build`
-
-The application should automatically open in [`http://localhost:3000`](http://localhost:3000/)
 
 ##### Build project
 
