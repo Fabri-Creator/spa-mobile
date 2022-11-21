@@ -1,4 +1,4 @@
-### Challenge for ZARA
+### Mobile Challenge
 
 ###### By Fabricio Lancieri
 
