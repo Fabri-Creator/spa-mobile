@@ -10,7 +10,7 @@
 
 ##### Get into project folder
 
-`cd spa-movile`
+`cd spa-mobile`
 
 ##### Install dependencies
 
