@@ -2,8 +2,8 @@ const filterItems = (filtrado, localItems) => {
     let filteredItems;
 
     filteredItems = localItems.filter(
-      (movile) =>
-        movile.brand.includes(filtrado) || movile.model.includes(filtrado)
+      (mobile) =>
+        mobile.brand.includes(filtrado) || mobile.model.includes(filtrado)
     );
     return filteredItems;
 }

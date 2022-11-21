@@ -7,4 +7,3 @@ const fetchSingleProduct = (url) => {
 }
  export default fetchSingleProduct;
 
- 

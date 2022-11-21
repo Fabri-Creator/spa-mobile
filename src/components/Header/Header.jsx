@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
-import getMovile from "../../assets/getMovile";
+import getMobile from "../../services/getMobile";
 
 import "./Header.css";
 
 function Header({ handleItems }) {
   const [pages, setPages] = useState("");
-  const [movile, setMovile] = useState(getMovile());
+  const [mobile, setMobile] = useState(getMobile());
   let location  = useLocation();
 
   useEffect(() => {
     let crumbs = [];
     location.pathname === '/' && crumbs.push('/')
-    location.pathname !== '/' && crumbs.push('/', movile.id)
+    location.pathname !== '/' && crumbs.push('/', mobile.id)
     return setPages(crumbs);
   }, []);
 
@@ -30,10 +30,10 @@ function Header({ handleItems }) {
           pages.map((page) => {
             return (
               <NavLink
-                to={page === "/" ? "/" : `/${movile.id}`}
+                to={page === "/" ? "/" : `/${mobile.id}`}
                 className="nav-style"
               >
-                {page === "/" ? "/Moviles" : `/${movile.model}`}
+                {page === "/" ? "/Mobiles" : `/${mobile.model}`}
               </NavLink>
             );
           })}
